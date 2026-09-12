@@ -30,6 +30,7 @@ NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")
 PER_PAGE = 100
 NTFY_TIMEOUT = 10
 
+FAILED_CONCLUSIONS = {"failure", "timed_out", "cancelled"}
 
 PKT = ZoneInfo("Asia/Karachi")  # Pakistan Standard Time (UTC+5)
 
@@ -41,11 +42,9 @@ def now_pkt() -> datetime:
 
 def tracker_repo() -> str:
     """Return the full name of this tracker repo (owner/repo), or empty string."""
-    # In Actions, GITHUB_REPOSITORY is set (e.g. "owner/repo")
     val = os.environ.get("GITHUB_REPOSITORY")
     if val:
         return val
-    # Fallback: read git remote
     try:
         url = subprocess.check_output(
             ["git", "remote", "get-url", "origin"],
@@ -129,6 +128,11 @@ def save_repos(repos: list) -> None:
     REPOS_FILE.write_text(json.dumps(sorted(repos), indent=2) + "\n")
 
 
+def is_failed(run: dict) -> bool:
+    """Return True if a run concluded with failure/timed_out/cancelled."""
+    return (run.get("conclusion") or run.get("status") or "") in FAILED_CONCLUSIONS
+
+
 # ── fetch workflow runs ───────────────────────────────────────────────────────
 
 def fetch_recent_runs(repo: str) -> list:
@@ -159,34 +163,56 @@ def update_today(runs: list) -> None:
         [r for r in runs if (r.get("created_at") or "").startswith(today)],
         key=lambda r: r.get("created_at", ""),
     )
-    by_repo: dict = {}
+    failed_todays = [r for r in todays if is_failed(r)]
+    failed_by_repo: dict[str, list] = {}
+    for r in failed_todays:
+        failed_by_repo.setdefault(r["repo"], []).append(r)
+
+    by_repo: dict[str, list] = {}
     for run in todays:
         by_repo.setdefault(run["repo"], []).append(run)
 
+    total_failed = len(failed_todays)
     lines = [
         "# Today's Runs",
         "",
         f"Updated at: {now_pkt().strftime('%Y-%m-%d %H:%M:%S')} PKT",
         f"Date: {today}",
         "",
-        f"**Total runs today: {len(todays)}**",
+        f"**Total runs today: {len(todays)}**" + (f" ({total_failed} failed)" if total_failed else ""),
         "",
         "## By repo",
         "",
     ]
     if by_repo:
         for repo, runs_in_repo in sorted(by_repo.items()):
-            lines.append(f"- `{repo}`: {len(runs_in_repo)} run(s)")
+            fails = sum(1 for r in runs_in_repo if is_failed(r))
+            tag = f" ({fails} failed)" if fails else ""
+            lines.append(f"- `{repo}`: {len(runs_in_repo)} run(s){tag}")
     else:
         lines.append("- No runs recorded yet today.")
 
+    # ── failed runs detail ────────────────────────────────────────────────
+    if failed_todays:
+        lines += ["", "## Failures", ""]
+        for repo in sorted(failed_by_repo):
+            short = repo.split("/")[-1]
+            for r in failed_by_repo[repo]:
+                label = r.get("workflow") or "unknown workflow"
+                lines.append(
+                    f"- {pkt_time(r['created_at'])} · `{short}` · {label} · "
+                    f"{r.get('event') or '?'} · {r.get('conclusion') or r.get('status') or '?'}"
+                )
+
+    # ── all run times ─────────────────────────────────────────────────────
     lines += ["", "## Run times (PKT)", ""]
     if todays:
         for run in todays:
             label = run.get("workflow") or "unknown workflow"
+            tag = " ❌" if is_failed(run) else ""
             lines.append(
                 f"- {pkt_time(run['created_at'])} · `{run['repo']}` · {label} · "
-                f"{run.get('event') or '?'} · {run.get('conclusion') or run.get('status') or '?'}"
+                f"{run.get('event') or '?'} · {run.get('conclusion') or run.get('status') or '?'}{tag}"
             )
     else:
         lines.append("- No runs recorded yet today.")
@@ -238,26 +264,33 @@ def main() -> None:
         [r for r in existing if (r.get("created_at") or "").startswith(today)],
         key=lambda r: r.get("created_at", ""),
     )
+    total_failed = sum(1 for r in todays if is_failed(r))
 
     lines = [
         f"Repos tracked: {len(repos)}",
         f"New runs this poll: {len(new_runs)}",
-        f"Total runs today: {len(todays)}",
+        f"Total runs today: {len(todays)}" + (f" ({total_failed} failed)" if total_failed else ""),
         "",
         "Per repo:",
     ]
-    by_repo: dict = {}
+    by_repo: dict[str, list] = {}
     for run in todays:
         by_repo.setdefault(run["repo"], []).append(run)
 
     if by_repo:
         for repo, runs_in_repo in sorted(by_repo.items()):
-            last = runs_in_repo[-1]
             short = repo.split("/")[-1]
-            lines.append(
-                f"- {short}: {len(runs_in_repo)} run(s) · last {pkt_time(last['created_at'])} PKT · "
-                f"{last.get('conclusion') or last.get('status') or '?'}"
+            fails = [r for r in runs_in_repo if is_failed(r)]
+            last = runs_in_repo[-1]
+            status = "❌" if is_failed(last) else "✅"
+            line = (
+                f"- {short}: {len(runs_in_repo)} run(s)"
+                f" · last {pkt_time(last['created_at'])} PKT {status}"
             )
+            if fails:
+                line += f" · {len(fails)} failed"
+                line += f" @ {', '.join(pkt_time(f['created_at']) for f in fails)}"
+            lines.append(line)
     else:
         lines.append("- No runs recorded yet today.")
 
@@ -278,7 +311,7 @@ def main() -> None:
             lines.append("No new repos found.")
 
     # ── send ntfy ─────────────────────────────────────────────────────────
-    title = f"Run Tracker · {today} · {len(todays)} run(s)"
+    title = f"Run Tracker · {today} · {len(todays)} run(s)" + (f" · {total_failed} failed" if total_failed else "")
     message = "\n".join(lines)
     if send_ntfy(title, message):
         print(f"ntfy sent to {NTFY_TOPIC}")
