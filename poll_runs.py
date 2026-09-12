@@ -86,6 +86,15 @@ def pkt_time(iso: str) -> str:
         return (iso or "")[11:16]
 
 
+def pkt_date(iso: str) -> str:
+    """Return the Pakistan Standard Time date (YYYY-MM-DD) of a UTC timestamp."""
+    try:
+        dt = datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(PKT)
+        return dt.strftime("%Y-%m-%d")
+    except (ValueError, TypeError):
+        return (iso or "")[:10]
+
+
 # ── gh api ────────────────────────────────────────────────────────────────────
 
 def gh_api(path: str):
@@ -160,7 +169,7 @@ def fetch_recent_runs(repo: str) -> list:
 def update_today(runs: list) -> None:
     today = now_pkt().strftime("%Y-%m-%d")
     todays = sorted(
-        [r for r in runs if (r.get("created_at") or "").startswith(today)],
+        [r for r in runs if pkt_date(r.get("created_at", "")) == today],
         key=lambda r: r.get("created_at", ""),
     )
     failed_todays = [r for r in todays if is_failed(r)]
@@ -242,17 +251,28 @@ def discover_repos() -> list:
 def main() -> None:
     repos = load_repos()
     existing = load_log()
-    seen = {r["run_id"] for r in existing}
+    by_id = {r["run_id"]: r for r in existing}
     new_runs = []
+    updated = 0
 
     print(f"Polling {len(repos)} repos...")
     for repo in repos:
         for run in fetch_recent_runs(repo):
-            if run["run_id"] not in seen:
-                seen.add(run["run_id"])
+            rid = run["run_id"]
+            if rid in by_id:
+                # Refresh conclusion/status so runs first seen in progress
+                # eventually report their real result (success/failure).
+                stored = by_id[rid]
+                if stored.get("conclusion") != run["conclusion"] or stored.get("status") != run["status"]:
+                    stored["conclusion"] = run["conclusion"]
+                    stored["status"] = run["status"]
+                    updated += 1
+            else:
+                by_id[rid] = run
                 new_runs.append(run)
 
-    print(f"Found {len(new_runs)} new run(s).")
+    print(f"Found {len(new_runs)} new run(s), refreshed {updated} existing.")
+    existing = sorted(by_id.values(), key=lambda r: (r.get("created_at") or "", r["repo"]))
     existing.extend(new_runs)
     existing.sort(key=lambda r: (r.get("created_at") or "", r["repo"]))
     save_log(existing)
@@ -261,7 +281,7 @@ def main() -> None:
     # ── today summary for ntfy ────────────────────────────────────────────
     today = now_pkt().strftime("%Y-%m-%d")
     todays = sorted(
-        [r for r in existing if (r.get("created_at") or "").startswith(today)],
+        [r for r in existing if pkt_date(r.get("created_at", "")) == today],
         key=lambda r: r.get("created_at", ""),
     )
     total_failed = sum(1 for r in todays if is_failed(r))

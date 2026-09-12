@@ -1,19 +1,26 @@
 # Today's Runs
 
-Updated at: 2026-09-12 19:16:25 PKT
+Updated at: 2026-09-12 19:18:39 PKT
 Date: 2026-09-12
 
-**Total runs today: 23**
+**Total runs today: 26** (1 failed)
 
 ## By repo
 
 - `rehanbabar17-art/bill-checker`: 1 run(s)
-- `rehanbabar17-art/pakistan-brand-sale-monitor`: 4 run(s)
-- `rehanbabar17-art/parcel-tracker`: 11 run(s)
-- `rehanbabar17-art/sitewatch`: 7 run(s)
+- `rehanbabar17-art/pakistan-brand-sale-monitor`: 5 run(s)
+- `rehanbabar17-art/parcel-tracker`: 12 run(s)
+- `rehanbabar17-art/sitewatch`: 8 run(s) (1 failed)
+
+## Failures
+
+- 01:00 · `sitewatch` · Track Daraz Price · workflow_dispatch · failure
 
 ## Run times (PKT)
 
+- 01:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · success
+- 01:00 · `rehanbabar17-art/sitewatch` · Track Daraz Price · workflow_dispatch · failure ❌
+- 04:06 · `rehanbabar17-art/parcel-tracker` · Track Parcels · schedule · success
 - 05:03 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
 - 08:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
 - 09:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · schedule · success
