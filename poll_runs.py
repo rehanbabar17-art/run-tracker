@@ -208,9 +208,11 @@ def update_today(runs: list) -> None:
             short = repo.split("/")[-1]
             for r in failed_by_repo[repo]:
                 label = r.get("workflow") or "unknown workflow"
+                run_url = f"https://github.com/{repo}/actions/runs/{r['run_id']}"
                 lines.append(
-                    f"- {pkt_time(r['created_at'])} · `{short}` · {label} · "
-                    f"{r.get('event') or '?'} · {r.get('conclusion') or r.get('status') or '?'}"
+                    f"- ❌ {pkt_time(r['created_at'])} PKT · `{short}` · {label} · "
+                    f"{r.get('event') or '?'} · {r.get('conclusion') or r.get('status') or '?'} · "
+                    f"[view run]({run_url})"
                 )
 
     # ── all run times ─────────────────────────────────────────────────────
