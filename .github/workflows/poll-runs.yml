@@ -1,0 +1,65 @@
+name: Poll Repo Runs
+
+on:
+  repository_dispatch:
+    types: [run-tracker-poll]
+  workflow_dispatch:
+    inputs:
+      last_run_of_day:
+        description: 'End-of-day run? discover new repos'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+permissions:
+  contents: write
+
+# Serialize poll runs so concurrent dispatches don't race on git push.
+concurrency:
+  group: poll-runs
+  cancel-in-progress: false
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    env:
+      # Cross-repo access: use a PAT if provided, otherwise the default token
+      # (which only reaches this repo's own actions).
+      GH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN || secrets.GITHUB_TOKEN }}
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      # repository_dispatch signals "last run of day" via client_payload;
+      # workflow_dispatch signals it via the input.
+      LAST_RUN_OF_DAY: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.last_run_of_day == true || inputs.last_run_of_day == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pull workflow runs
+        run: python poll_runs.py
+
+      - name: Commit and push updates
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add repos.json run-log.json TODAY.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Update run log"
+          # Rare race: retry, preferring the local (fresh) log on conflicts.
+          for attempt in 1 2 3 4 5 6; do
+            if git push; then
+              echo "Push succeeded on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt), rebasing and retrying..."
+            git pull --rebase -X theirs origin master || true
+            sleep 5
+          done
+          echo "Push failed after 6 attempts." >&2
+          exit 1
