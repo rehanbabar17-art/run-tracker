@@ -304,17 +304,29 @@ def main() -> None:
             short = repo.split("/")[-1]
             fails = [r for r in runs_in_repo if is_failed(r)]
             last = runs_in_repo[-1]
-            status = "❌" if is_failed(last) else "✅"
+            marker = "❌" if fails else "✅"
             line = (
-                f"- {short}: {len(runs_in_repo)} run(s)"
-                f" · last {pkt_time(last['created_at'])} PKT {status}"
+                f"- {marker} {short}: {len(runs_in_repo)} run(s)"
+                f" · last {pkt_time(last['created_at'])} PKT"
             )
             if fails:
-                line += f" · {len(fails)} failed"
-                line += f" @ {', '.join(pkt_time(f['created_at']) for f in fails)}"
+                line += f" · {len(fails)} failed @ {', '.join(pkt_time(f['created_at']) for f in fails)}"
             lines.append(line)
     else:
         lines.append("- No runs recorded yet today.")
+
+    # ── failed runs detail ────────────────────────────────────────────────
+    failed_todays = [r for r in todays if is_failed(r)]
+    if failed_todays:
+        lines += ["", "Failed:", ""]
+        for r in failed_todays:
+            short = r["repo"].split("/")[-1]
+            label = r.get("workflow") or "unknown workflow"
+            run_url = f"https://github.com/{r['repo']}/actions/runs/{r['run_id']}"
+            lines.append(
+                f"- ❌ {pkt_time(r['created_at'])} PKT · {short} · {label} · "
+                f"{r.get('conclusion') or r.get('status') or '?'} · {run_url}"
+            )
 
     # ── last run of day: discover repos ───────────────────────────────────
     explicit_flag = os.environ.get("LAST_RUN_OF_DAY", "").lower() == "true"
