@@ -1,6 +1,6 @@
 # Today's Runs
 
-Updated at: 2026-09-12 19:20:32 PKT
+Updated at: 2026-09-12 19:25:28 PKT
 Date: 2026-09-12
 
 **Total runs today: 26** (1 failed)
@@ -14,7 +14,7 @@ Date: 2026-09-12
 
 ## Failures
 
-- 01:00 · `sitewatch` · Track Daraz Price · workflow_dispatch · failure
+- ❌ 01:00 PKT · `sitewatch` · Track Daraz Price · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/sitewatch/actions/runs/34641866564)
 
 ## Run times (PKT)
 
