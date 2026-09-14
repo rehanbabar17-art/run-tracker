@@ -166,7 +166,7 @@ def fetch_recent_runs(repo: str) -> list:
 
 # ── update TODAY.md ──────────────────────────────────────────────────────────
 
-def update_today(runs: list) -> None:
+def update_today(runs: list, tracked_repos: list) -> None:
     today = now_pkt().strftime("%Y-%m-%d")
     todays = sorted(
         [r for r in runs if pkt_date(r.get("created_at", "")) == today],
@@ -193,13 +193,14 @@ def update_today(runs: list) -> None:
         "## By repo",
         "",
     ]
-    if by_repo:
-        for repo, runs_in_repo in sorted(by_repo.items()):
+    for repo in sorted(tracked_repos):
+        runs_in_repo = by_repo.get(repo, [])
+        if runs_in_repo:
             fails = sum(1 for r in runs_in_repo if is_failed(r))
             tag = f" ({fails} failed)" if fails else ""
             lines.append(f"- `{repo}`: {len(runs_in_repo)} run(s){tag}")
-    else:
-        lines.append("- No runs recorded yet today.")
+        else:
+            lines.append(f"- `{repo}`: 0 run(s) · not run today")
 
     # ── failed runs detail ────────────────────────────────────────────────
     if failed_todays:
@@ -278,7 +279,7 @@ def main() -> None:
     existing.extend(new_runs)
     existing.sort(key=lambda r: (r.get("created_at") or "", r["repo"]))
     save_log(existing)
-    update_today(existing)
+    update_today(existing, repos)
 
     # ── today summary for ntfy ────────────────────────────────────────────
     today = now_pkt().strftime("%Y-%m-%d")
@@ -299,21 +300,22 @@ def main() -> None:
     for run in todays:
         by_repo.setdefault(run["repo"], []).append(run)
 
-    if by_repo:
-        for repo, runs_in_repo in sorted(by_repo.items()):
-            short = repo.split("/")[-1]
-            fails = [r for r in runs_in_repo if is_failed(r)]
-            last = runs_in_repo[-1]
-            marker = "❌" if fails else "✅"
-            line = (
-                f"- {marker} {short}: {len(runs_in_repo)} run(s)"
-                f" · last {pkt_time(last['created_at'])} PKT"
-            )
-            if fails:
-                line += f" · {len(fails)} failed @ {', '.join(pkt_time(f['created_at']) for f in fails)}"
-            lines.append(line)
-    else:
-        lines.append("- No runs recorded yet today.")
+    for repo in sorted(repos):
+        short = repo.split("/")[-1]
+        runs_in_repo = by_repo.get(repo, [])
+        if not runs_in_repo:
+            lines.append(f"- ⚪ {short}: not run today")
+            continue
+        fails = [r for r in runs_in_repo if is_failed(r)]
+        last = runs_in_repo[-1]
+        marker = "❌" if fails else "✅"
+        line = (
+            f"- {marker} {short}: {len(runs_in_repo)} run(s)"
+            f" · last {pkt_time(last['created_at'])} PKT"
+        )
+        if fails:
+            line += f" · {len(fails)} failed @ {', '.join(pkt_time(f['created_at']) for f in fails)}"
+        lines.append(line)
 
     # ── failed runs detail ────────────────────────────────────────────────
     failed_todays = [r for r in todays if is_failed(r)]
