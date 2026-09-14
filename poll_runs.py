@@ -8,8 +8,6 @@ the repos listed in repos.json, appends any new workflow runs to run-log.json
 Environment variables
 ---------------------
 NTFY_TOPIC       ntfy topic for notifications (required; set it in the environment)
-LAST_RUN_OF_DAY  "true" to trigger end-of-day repo discovery
-LAST_RUN_HOUR    PKT hour threshold for auto-discovery fallback (default: 23)
 """
 
 import json
@@ -252,6 +250,13 @@ def discover_repos() -> list:
 # ── main ─────────────────────────────────────────────────────────────────────
 
 def main() -> None:
+    # Always discover new repos before polling so they are included immediately.
+    added = discover_repos()
+    if added:
+        print(f"Discovered {len(added)} new repo(s): {', '.join(added)}")
+    else:
+        print("No new repos found this poll.")
+
     repos = load_repos()
     existing = load_log()
     by_id = {r["run_id"]: r for r in existing}
@@ -329,22 +334,6 @@ def main() -> None:
                 f"- ❌ {pkt_time(r['created_at'])} PKT · {short} · {label} · "
                 f"{r.get('conclusion') or r.get('status') or '?'} · {run_url}"
             )
-
-    # ── last run of day: discover repos ───────────────────────────────────
-    explicit_flag = os.environ.get("LAST_RUN_OF_DAY", "").lower() == "true"
-    hour_threshold = int(os.environ.get("LAST_RUN_HOUR", "23"))
-    auto_hour = now_pkt().hour >= hour_threshold
-
-    if explicit_flag or auto_hour:
-        print("Running end-of-day repo discovery...")
-        added = discover_repos()
-        if added:
-            lines.append("")
-            lines.append(f"New repos added: {', '.join(added)}")
-            print(f"Discovered {len(added)} new repo(s): {', '.join(added)}")
-        else:
-            lines.append("")
-            lines.append("No new repos found.")
 
     # ── send ntfy ─────────────────────────────────────────────────────────
     title = f"Run Tracker · {today} · {len(todays)} run(s)" + (f" · {total_failed} failed" if total_failed else "")
