@@ -1,27 +1,31 @@
 # Today's Runs
 
-Updated at: 2026-09-15 14:00:43 PKT
+Updated at: 2026-09-15 16:00:50 PKT
 Date: 2026-09-15
 
-**Total runs today: 89** (4 failed)
+**Total runs today: 115** (8 failed)
 
 ## By repo
 
-- `rehanbabar17-art/bill-checker`: 2 run(s)
+- `rehanbabar17-art/bill-checker`: 1 run(s)
 - `rehanbabar17-art/cc-statement-monitor`: 0 run(s) · not run today
-- `rehanbabar17-art/kse-market-monitor`: 24 run(s) (4 failed)
-- `rehanbabar17-art/pakistan-brand-sale-monitor`: 9 run(s)
-- `rehanbabar17-art/parcel-tracker`: 19 run(s)
+- `rehanbabar17-art/kse-market-monitor`: 39 run(s) (8 failed)
+- `rehanbabar17-art/pakistan-brand-sale-monitor`: 10 run(s)
+- `rehanbabar17-art/parcel-tracker`: 24 run(s)
 - `rehanbabar17-art/parcel-tracker-archive`: 0 run(s) · not run today
-- `rehanbabar17-art/sitewatch`: 16 run(s)
-- `rehanbabar17-art/weather-alerts-pakistan`: 19 run(s)
+- `rehanbabar17-art/sitewatch`: 19 run(s)
+- `rehanbabar17-art/weather-alerts-pakistan`: 22 run(s)
 
 ## Failures
 
 - ❌ 12:16 PKT · `kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/kse-market-monitor/actions/runs/34940846166)
 - ❌ 13:16 PKT · `kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/kse-market-monitor/actions/runs/34946026517)
 - ❌ 13:45 PKT · `kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/kse-market-monitor/actions/runs/34948692151)
-- ❌ 13:45 PKT · `kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/kse-market-monitor/actions/runs/34948692151)
+- ❌ 14:00 PKT · `kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/kse-market-monitor/actions/runs/34950090410)
+- ❌ 14:16 PKT · `kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/kse-market-monitor/actions/runs/34951608359)
+- ❌ 14:16 PKT · `kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/kse-market-monitor/actions/runs/34951608359)
+- ❌ 14:31 PKT · `kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/kse-market-monitor/actions/runs/34952928110)
+- ❌ 14:31 PKT · `kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/kse-market-monitor/actions/runs/34952928110)
 
 ## Run times (PKT)
 
@@ -99,18 +103,44 @@ Date: 2026-09-15
 - 13:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
 - 13:16 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure ❌
 - 13:31 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
-- 13:31 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
 - 13:45 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure ❌
-- 13:45 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure ❌
-- 14:00 · `rehanbabar17-art/bill-checker` · Check Utility Bills · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/bill-checker` · Check Utility Bills · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
+- 14:00 · `rehanbabar17-art/bill-checker` · Check Utility Bills · workflow_dispatch · success
+- 14:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · success
+- 14:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
 - 14:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
-- 14:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
-- 14:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · in_progress
+- 14:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure ❌
+- 14:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 14:16 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure ❌
+- 14:16 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure ❌
+- 14:31 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure ❌
+- 14:31 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure ❌
+- 14:40 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 14:40 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 14:45 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 14:45 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 14:53 · `rehanbabar17-art/parcel-tracker` · Track Parcels · schedule · success
+- 14:53 · `rehanbabar17-art/parcel-tracker` · Track Parcels · schedule · success
+- 15:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 15:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 15:16 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 15:16 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 15:31 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 15:31 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 15:45 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 15:45 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 16:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · in_progress
