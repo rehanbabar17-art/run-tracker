@@ -280,9 +280,10 @@ def main() -> None:
                 new_runs.append(run)
 
     print(f"Found {len(new_runs)} new run(s), refreshed {updated} existing.")
+    # by_id is keyed by run_id and already contains the new runs, so sorting
+    # its values is the full set; extending with new_runs again would double-
+    # write every new run.
     existing = sorted(by_id.values(), key=lambda r: (r.get("created_at") or "", r["repo"]))
-    existing.extend(new_runs)
-    existing.sort(key=lambda r: (r.get("created_at") or "", r["repo"]))
     save_log(existing)
     update_today(existing, repos)
 
@@ -322,18 +323,25 @@ def main() -> None:
             line += f" · {len(fails)} failed @ {', '.join(pkt_time(f['created_at']) for f in fails)}"
         lines.append(line)
 
-    # ── failed runs detail ────────────────────────────────────────────────
+    # ── failed runs detail (capped: ntfy turns oversized bodies into a
+    # file attachment, so only the newest few failures get full links) ────
     failed_todays = [r for r in todays if is_failed(r)]
-    if failed_todays:
-        lines += ["", "Failed:", ""]
-        for r in failed_todays:
-            short = r["repo"].split("/")[-1]
-            label = r.get("workflow") or "unknown workflow"
-            run_url = f"https://github.com/{r['repo']}/actions/runs/{r['run_id']}"
-            lines.append(
-                f"- ❌ {pkt_time(r['created_at'])} PKT · {short} · {label} · "
-                f"{r.get('conclusion') or r.get('status') or '?'} · {run_url}"
-            )
+    fail_detail_prefix = ["", "Failed:", ""]
+    fail_detail_lines = []
+    max_fail_details = 8
+    for r in failed_todays[:max_fail_details]:
+        short = r["repo"].split("/")[-1]
+        label = r.get("workflow") or "unknown workflow"
+        run_url = f"https://github.com/{r['repo']}/actions/runs/{r['run_id']}"
+        fail_detail_lines.append(
+            f"- ❌ {pkt_time(r['created_at'])} PKT · {short} · {label} · "
+            f"{r.get('conclusion') or r.get('status') or '?'} · {run_url}"
+        )
+    hidden = len(failed_todays) - len(fail_detail_lines)
+    if hidden > 0:
+        fail_detail_lines.append(f"- … and {hidden} more failed run(s) — full list in TODAY.md")
+    if fail_detail_lines:
+        lines += fail_detail_prefix + fail_detail_lines
 
     # ── send ntfy ─────────────────────────────────────────────────────────
     title = f"Run Tracker · {today} · {len(todays)} run(s)" + (f" · {total_failed} failed" if total_failed else "")
