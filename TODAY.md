@@ -1,25 +1,26 @@
 # Today's Runs
 
-Updated at: 2026-09-16 10:18:29 PKT
+Updated at: 2026-09-16 12:00:49 PKT
 Date: 2026-09-16
 
-**Total runs today: 83** (16 failed)
+**Total runs today: 108** (20 failed)
 
 ## By repo
 
 - `rehanbabar17-art/bill-checker`: 0 run(s) · not run today
 - `rehanbabar17-art/cc-statement-monitor`: 0 run(s) · not run today
-- `rehanbabar17-art/kse-market-monitor`: 6 run(s)
-- `rehanbabar17-art/news-repo-hi-can-you-make`: 34 run(s) (15 failed)
-- `rehanbabar17-art/pakistan-brand-sale-monitor`: 6 run(s)
+- `rehanbabar17-art/kse-market-monitor`: 13 run(s) (1 failed)
+- `rehanbabar17-art/news-repo-hi-can-you-make`: 45 run(s) (18 failed)
+- `rehanbabar17-art/pakistan-brand-sale-monitor`: 7 run(s)
 - `rehanbabar17-art/pakistan-half-hourly-news`: 0 run(s) · not run today
-- `rehanbabar17-art/parcel-tracker`: 13 run(s) (1 failed)
+- `rehanbabar17-art/parcel-tracker`: 15 run(s) (1 failed)
 - `rehanbabar17-art/parcel-tracker-archive`: 0 run(s) · not run today
-- `rehanbabar17-art/sitewatch`: 11 run(s)
-- `rehanbabar17-art/weather-alerts-pakistan`: 13 run(s)
+- `rehanbabar17-art/sitewatch`: 13 run(s)
+- `rehanbabar17-art/weather-alerts-pakistan`: 15 run(s)
 
 ## Failures
 
+- ❌ 11:31 PKT · `kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/kse-market-monitor/actions/runs/35064072982)
 - ❌ 06:30 PKT · `news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled · [view run](https://github.com/rehanbabar17-art/news-repo-hi-can-you-make/actions/runs/35044354338)
 - ❌ 06:31 PKT · `news-repo-hi-can-you-make` · Half-Hourly Pakistan News · schedule · cancelled · [view run](https://github.com/rehanbabar17-art/news-repo-hi-can-you-make/actions/runs/35044435612)
 - ❌ 07:00 PKT · `news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled · [view run](https://github.com/rehanbabar17-art/news-repo-hi-can-you-make/actions/runs/35046298791)
@@ -35,6 +36,9 @@ Date: 2026-09-16
 - ❌ 09:55 PKT · `news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled · [view run](https://github.com/rehanbabar17-art/news-repo-hi-can-you-make/actions/runs/35057495481)
 - ❌ 10:00 PKT · `news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled · [view run](https://github.com/rehanbabar17-art/news-repo-hi-can-you-make/actions/runs/35057804908)
 - ❌ 10:04 PKT · `news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled · [view run](https://github.com/rehanbabar17-art/news-repo-hi-can-you-make/actions/runs/35058033460)
+- ❌ 10:15 PKT · `news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled · [view run](https://github.com/rehanbabar17-art/news-repo-hi-can-you-make/actions/runs/35058781533)
+- ❌ 10:30 PKT · `news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled · [view run](https://github.com/rehanbabar17-art/news-repo-hi-can-you-make/actions/runs/35059781203)
+- ❌ 10:31 PKT · `news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/news-repo-hi-can-you-make/actions/runs/35059857261)
 - ❌ 03:00 PKT · `parcel-tracker` · Track Parcels · schedule · cancelled · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/35028671794)
 
 ## Run times (PKT)
@@ -120,5 +124,30 @@ Date: 2026-09-16
 - 10:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
 - 10:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled ❌
 - 10:04 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled ❌
-- 10:15 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · in_progress
+- 10:15 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled ❌
 - 10:16 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 10:24 · `rehanbabar17-art/news-repo-hi-can-you-make` · Diag Fetch Deadlines · workflow_dispatch · success
+- 10:26 · `rehanbabar17-art/news-repo-hi-can-you-make` · Diag Fetch Deadlines · workflow_dispatch · success
+- 10:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · cancelled ❌
+- 10:31 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 10:31 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · failure ❌
+- 10:41 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 10:45 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 10:48 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 10:56 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 10:58 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 11:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 11:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
+- 11:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 11:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 11:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 11:16 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 11:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 11:31 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · failure ❌
+- 11:45 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · success
+- 12:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
+- 12:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · in_progress
+- 12:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
+- 12:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · in_progress
+- 12:00 · `rehanbabar17-art/kse-market-monitor` · KSE Market Monitor · workflow_dispatch · in_progress
+- 12:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · in_progress
