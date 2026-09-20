@@ -1,22 +1,26 @@
 # Today's Runs
 
-Updated at: 2026-09-20 14:00:44 PKT
+Updated at: 2026-09-20 16:00:51 PKT
 Date: 2026-09-20
 
-**Total runs today: 100**
+**Total runs today: 113** (1 failed)
 
 ## By repo
 
-- `rehanbabar17-art/bill-checker`: 5 run(s)
-- `rehanbabar17-art/cc-statement-monitor`: 1 run(s)
+- `rehanbabar17-art/bill-checker`: 6 run(s)
+- `rehanbabar17-art/cc-statement-monitor`: 1 run(s) (1 failed)
 - `rehanbabar17-art/kse-market-monitor`: 0 run(s) · not run today
-- `rehanbabar17-art/news-repo-hi-can-you-make`: 31 run(s)
-- `rehanbabar17-art/pakistan-brand-sale-monitor`: 8 run(s)
+- `rehanbabar17-art/news-repo-hi-can-you-make`: 36 run(s)
+- `rehanbabar17-art/pakistan-brand-sale-monitor`: 9 run(s)
 - `rehanbabar17-art/pakistan-half-hourly-news`: 2 run(s)
-- `rehanbabar17-art/parcel-tracker`: 19 run(s)
+- `rehanbabar17-art/parcel-tracker`: 21 run(s)
 - `rehanbabar17-art/parcel-tracker-archive`: 0 run(s) · not run today
-- `rehanbabar17-art/sitewatch`: 15 run(s)
-- `rehanbabar17-art/weather-alerts-pakistan`: 19 run(s)
+- `rehanbabar17-art/sitewatch`: 17 run(s)
+- `rehanbabar17-art/weather-alerts-pakistan`: 21 run(s)
+
+## Failures
+
+- ❌ 14:00 PKT · `cc-statement-monitor` · Credit Card Statement Monitor · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/cc-statement-monitor/actions/runs/35501100474)
 
 ## Run times (PKT)
 
@@ -114,9 +118,22 @@ Date: 2026-09-20
 - 13:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
 - 13:51 · `rehanbabar17-art/bill-checker` · Check Utility Bills · workflow_dispatch · success
 - 14:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
-- 14:00 · `rehanbabar17-art/bill-checker` · Check Utility Bills · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/cc-statement-monitor` · Credit Card Statement Monitor · workflow_dispatch · queued
-- 14:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/pakistan-half-hourly-news` · Half-Hourly Pakistan News · workflow_dispatch · queued
+- 14:00 · `rehanbabar17-art/bill-checker` · Check Utility Bills · workflow_dispatch · success
+- 14:00 · `rehanbabar17-art/cc-statement-monitor` · Credit Card Statement Monitor · workflow_dispatch · failure ❌
+- 14:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · success
+- 14:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 14:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 14:00 · `rehanbabar17-art/pakistan-half-hourly-news` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 14:11 · `rehanbabar17-art/bill-checker` · Check Utility Bills · workflow_dispatch · success
+- 14:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 15:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 15:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 15:40 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · schedule · success
+- 16:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 16:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
+- 16:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · in_progress
