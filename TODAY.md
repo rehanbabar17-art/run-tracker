@@ -1,22 +1,26 @@
 # Today's Runs
 
-Updated at: 2026-09-26 20:00:56 PKT
+Updated at: 2026-09-26 22:00:50 PKT
 Date: 2026-09-26
 
-**Total runs today: 135**
+**Total runs today: 156** (1 failed)
 
 ## By repo
 
 - `rehanbabar17-art/bill-checker`: 1 run(s)
 - `rehanbabar17-art/cc-statement-monitor`: 0 run(s) · not run today
 - `rehanbabar17-art/kse-market-monitor`: 0 run(s) · not run today
-- `rehanbabar17-art/news-repo-hi-can-you-make`: 46 run(s)
-- `rehanbabar17-art/pakistan-brand-sale-monitor`: 11 run(s)
+- `rehanbabar17-art/news-repo-hi-can-you-make`: 51 run(s)
+- `rehanbabar17-art/pakistan-brand-sale-monitor`: 12 run(s)
 - `rehanbabar17-art/pakistan-half-hourly-news`: 0 run(s) · not run today
-- `rehanbabar17-art/parcel-tracker`: 31 run(s)
+- `rehanbabar17-art/parcel-tracker`: 38 run(s) (1 failed)
 - `rehanbabar17-art/parcel-tracker-archive`: 0 run(s) · not run today
-- `rehanbabar17-art/sitewatch`: 21 run(s)
-- `rehanbabar17-art/weather-alerts-pakistan`: 25 run(s)
+- `rehanbabar17-art/sitewatch`: 26 run(s)
+- `rehanbabar17-art/weather-alerts-pakistan`: 28 run(s)
+
+## Failures
+
+- ❌ 20:12 PKT · `parcel-tracker` · Track Parcels · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36251111572)
 
 ## Run times (PKT)
 
@@ -150,8 +154,29 @@ Date: 2026-09-26
 - 19:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
 - 19:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
 - 19:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
-- 20:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
+- 20:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · success
 - 20:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
-- 20:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
-- 20:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · in_progress
-- 20:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · in_progress
+- 20:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 20:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
+- 20:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 20:07 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 20:12 · `rehanbabar17-art/parcel-tracker` · Track Parcels · workflow_dispatch · failure ❌
+- 20:14 · `rehanbabar17-art/parcel-tracker` · Track Parcels · workflow_dispatch · success
+- 20:21 · `rehanbabar17-art/parcel-tracker` · Track Parcels · workflow_dispatch · success
+- 20:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 20:50 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · schedule · success
+- 21:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 21:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 21:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
+- 21:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 21:25 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 21:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 21:31 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 21:38 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 21:58 · `rehanbabar17-art/parcel-tracker` · Track Parcels · schedule · success
+- 22:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
+- 22:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
+- 22:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
+- 22:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · in_progress
+- 22:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · in_progress
+- 22:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · schedule · queued
