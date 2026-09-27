@@ -1,30 +1,37 @@
 # Today's Runs
 
-Updated at: 2026-09-27 14:00:49 PKT
+Updated at: 2026-09-27 16:00:49 PKT
 Date: 2026-09-27
 
-**Total runs today: 108** (5 failed)
+**Total runs today: 136** (12 failed)
 
 ## By repo
 
-- `rehanbabar17-art/bill-checker`: 1 run(s)
+- `rehanbabar17-art/bill-checker`: 5 run(s) (2 failed)
 - `rehanbabar17-art/cc-statement-monitor`: 0 run(s) · not run today
 - `rehanbabar17-art/kse-market-monitor`: 0 run(s) · not run today
-- `rehanbabar17-art/news-repo-hi-can-you-make`: 33 run(s)
-- `rehanbabar17-art/pakistan-brand-sale-monitor`: 8 run(s)
+- `rehanbabar17-art/news-repo-hi-can-you-make`: 37 run(s)
+- `rehanbabar17-art/pakistan-brand-sale-monitor`: 9 run(s)
 - `rehanbabar17-art/pakistan-half-hourly-news`: 0 run(s) · not run today
-- `rehanbabar17-art/parcel-tracker`: 33 run(s) (5 failed)
+- `rehanbabar17-art/parcel-tracker`: 47 run(s) (10 failed)
 - `rehanbabar17-art/parcel-tracker-archive`: 0 run(s) · not run today
-- `rehanbabar17-art/sitewatch`: 15 run(s)
-- `rehanbabar17-art/weather-alerts-pakistan`: 18 run(s)
+- `rehanbabar17-art/sitewatch`: 17 run(s)
+- `rehanbabar17-art/weather-alerts-pakistan`: 21 run(s)
 
 ## Failures
 
+- ❌ 15:23 PKT · `bill-checker` · Separate IESCO and SNGPL References · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/bill-checker/actions/runs/36312394360)
+- ❌ 15:37 PKT · `bill-checker` · Check Utility Bills · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/bill-checker/actions/runs/36313118683)
 - ❌ 12:45 PKT · `parcel-tracker` · Verify Mega Storage · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36304097361)
 - ❌ 12:46 PKT · `parcel-tracker` · Verify Mega Storage · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36304132787)
 - ❌ 12:47 PKT · `parcel-tracker` · Verify Mega Storage · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36304172454)
 - ❌ 12:47 PKT · `parcel-tracker` · Verify Mega Storage · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36304206901)
 - ❌ 12:48 PKT · `parcel-tracker` · Verify Mega Storage · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36304255987)
+- ❌ 14:04 PKT · `parcel-tracker` · Verify MEGA Storage · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36308224543)
+- ❌ 14:06 PKT · `parcel-tracker` · Verify MEGA Storage · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36308289590)
+- ❌ 14:07 PKT · `parcel-tracker` · Verify MEGA Storage · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36308351394)
+- ❌ 14:08 PKT · `parcel-tracker` · Track Parcels · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36308410501)
+- ❌ 14:10 PKT · `parcel-tracker` · Verify MEGA Storage · workflow_dispatch · failure · [view run](https://github.com/rehanbabar17-art/parcel-tracker/actions/runs/36308505790)
 
 ## Run times (PKT)
 
@@ -130,9 +137,37 @@ Date: 2026-09-27
 - 13:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
 - 13:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
 - 13:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
-- 14:00 · `rehanbabar17-art/bill-checker` · Check Utility Bills · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
+- 14:00 · `rehanbabar17-art/bill-checker` · Check Utility Bills · workflow_dispatch · success
+- 14:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · success
+- 14:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
 - 14:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
-- 14:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · in_progress
-- 14:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · in_progress
+- 14:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 14:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 14:04 · `rehanbabar17-art/parcel-tracker` · Verify MEGA Storage · workflow_dispatch · failure ❌
+- 14:06 · `rehanbabar17-art/parcel-tracker` · Verify MEGA Storage · workflow_dispatch · failure ❌
+- 14:07 · `rehanbabar17-art/parcel-tracker` · Verify MEGA Storage · workflow_dispatch · failure ❌
+- 14:08 · `rehanbabar17-art/parcel-tracker` · Track Parcels · workflow_dispatch · failure ❌
+- 14:10 · `rehanbabar17-art/parcel-tracker` · Verify MEGA Storage · workflow_dispatch · failure ❌
+- 14:11 · `rehanbabar17-art/parcel-tracker` · Track Parcels · workflow_dispatch · success
+- 14:12 · `rehanbabar17-art/parcel-tracker` · Verify MEGA Storage · workflow_dispatch · success
+- 14:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 14:36 · `rehanbabar17-art/parcel-tracker` · Track Parcels · workflow_dispatch · success
+- 14:37 · `rehanbabar17-art/parcel-tracker` · Verify MEGA Storage · workflow_dispatch · success
+- 14:38 · `rehanbabar17-art/parcel-tracker` · Track Parcels · workflow_dispatch · success
+- 14:38 · `rehanbabar17-art/parcel-tracker` · Verify MEGA Storage · workflow_dispatch · success
+- 14:43 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 15:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · success
+- 15:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · success
+- 15:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 15:05 · `rehanbabar17-art/bill-checker` · Initialize Missing Mega Files · workflow_dispatch · success
+- 15:23 · `rehanbabar17-art/bill-checker` · Separate IESCO and SNGPL References · workflow_dispatch · failure ❌
+- 15:27 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · schedule · success
+- 15:30 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · success
+- 15:35 · `rehanbabar17-art/bill-checker` · Separate IESCO and SNGPL References · workflow_dispatch · success
+- 15:37 · `rehanbabar17-art/bill-checker` · Check Utility Bills · workflow_dispatch · failure ❌
+- 16:00 · `rehanbabar17-art/pakistan-brand-sale-monitor` · Pakistan Brand Sale Monitor · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/sitewatch` · Track Prices · workflow_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/weather-alerts-pakistan` · Weather Forecast & Alerts · workflow_dispatch · success
+- 16:00 · `rehanbabar17-art/parcel-tracker` · Track Parcels · repository_dispatch · in_progress
+- 16:00 · `rehanbabar17-art/news-repo-hi-can-you-make` · Half-Hourly Pakistan News · workflow_dispatch · in_progress
