@@ -36723,8 +36723,8 @@
     "run_number": 770,
     "workflow": "Weather Forecast & Alerts",
     "event": "workflow_dispatch",
-    "status": "in_progress",
-    "conclusion": null,
+    "status": "completed",
+    "conclusion": "success",
     "created_at": "2026-09-28T07:00:22Z",
     "actor": "rehanbabar17-art"
   },
@@ -36734,8 +36734,8 @@
     "run_number": 404,
     "workflow": "Pakistan Brand Sale Monitor",
     "event": "workflow_dispatch",
-    "status": "in_progress",
-    "conclusion": null,
+    "status": "completed",
+    "conclusion": "success",
     "created_at": "2026-09-28T07:00:23Z",
     "actor": "rehanbabar17-art"
   },
@@ -36745,8 +36745,8 @@
     "run_number": 515,
     "workflow": "Track Parcels",
     "event": "repository_dispatch",
-    "status": "in_progress",
-    "conclusion": null,
+    "status": "completed",
+    "conclusion": "success",
     "created_at": "2026-09-28T07:00:23Z",
     "actor": "rehanbabar17-art"
   },
@@ -36756,8 +36756,8 @@
     "run_number": 341,
     "workflow": "KSE Market Monitor",
     "event": "workflow_dispatch",
-    "status": "in_progress",
-    "conclusion": null,
+    "status": "completed",
+    "conclusion": "success",
     "created_at": "2026-09-28T07:00:27Z",
     "actor": "rehanbabar17-art"
   },
@@ -36767,8 +36767,8 @@
     "run_number": 706,
     "workflow": "Half-Hourly Pakistan News",
     "event": "workflow_dispatch",
-    "status": "in_progress",
-    "conclusion": null,
+    "status": "completed",
+    "conclusion": "success",
     "created_at": "2026-09-28T07:00:32Z",
     "actor": "rehanbabar17-art"
   }
