@@ -325,7 +325,14 @@ def main() -> None:
 
     # ── failed runs detail (capped: ntfy turns oversized bodies into a
     # file attachment, so only the newest few failures get full links) ────
-    failed_todays = [r for r in todays if is_failed(r)]
+    # `todays` is chronological so the run-time report reads naturally, but
+    # the notification should show the newest failures first. This also means
+    # the clipping limit keeps the latest failures instead of the oldest ones.
+    failed_todays = sorted(
+        (r for r in todays if is_failed(r)),
+        key=lambda r: r.get("created_at", ""),
+        reverse=True,
+    )
     fail_detail_prefix = ["", "Failed:", ""]
     fail_detail_lines = []
     max_fail_details = 8
