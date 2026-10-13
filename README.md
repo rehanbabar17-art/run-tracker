@@ -24,7 +24,7 @@ The topic is set via the **`NTFY_TOPIC`** repository secret (not stored in code)
 
 ## Auto-discovery on the last run of the day
 
-On the last run of the day, `poll_runs.py` lists public repos in your account and appends any new public repos to `repos.json`. Private repos are never added to this public file.
+On each poll, `poll_runs.py` removes tracked repositories when GitHub explicitly returns `404 Not Found`; API/authentication errors do not remove entries. It also lists repos visible to the configured GitHub token and appends newly discovered owned repos to `repos.json` on the last run of the day.
 
 - **cron-job.org**: set `"last_run_of_day": true` in the dispatch body on your final job of the day.
 - **Fallback**: if the run happens at PKT hour ≥ 23 (configurable via `LAST_RUN_HOUR`), discovery runs automatically.

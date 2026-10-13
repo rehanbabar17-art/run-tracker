@@ -139,6 +139,37 @@ def save_repos(repos: list) -> None:
     REPOS_FILE.write_text(json.dumps(sorted(repos), indent=2) + "\n")
 
 
+def repo_is_missing(repo: str) -> bool:
+    """Return True only when GitHub explicitly reports this repo as not found."""
+    result = subprocess.run(
+        ["gh", "api", f"repos/{repo}"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode == 0:
+        return False
+    error = result.stderr.strip()
+    if "HTTP 404" in error or "404 Not Found" in error:
+        print(f"  removing missing repository {repo}")
+        return True
+    # Keep the entry on auth/rate-limit/network errors; they do not prove deletion.
+    print(f"  could not verify repository {repo}: {error}", file=sys.stderr)
+    return False
+
+
+def remove_missing_repos(repos: list) -> tuple[list, list]:
+    """Remove repositories GitHub reports as 404; return active and removed lists."""
+    active = []
+    removed = []
+    for repo in repos:
+        (removed if repo_is_missing(repo) else active).append(repo)
+    if removed:
+        save_repos(active)
+        print(f"Removed {len(removed)} repository/repositories no longer found.")
+    return active, removed
+
+
 def is_failed(run: dict) -> bool:
     """Return True if a run concluded with failure/timed_out/cancelled."""
     return (run.get("conclusion") or run.get("status") or "") in FAILED_CONCLUSIONS
@@ -262,9 +293,11 @@ def main() -> None:
     else:
         print("No new repos found this poll.")
 
-    repos = load_repos()
-    existing = load_log()
-    by_id = {r["run_id"]: r for r in existing}
+    repos, _ = remove_missing_repos(load_repos())
+    all_existing = load_log()
+    # Preserve historical data privately, but exclude removed repos from outputs.
+    active_repos = set(repos)
+    by_id = {r["run_id"]: r for r in all_existing}
     new_runs = []
     updated = 0
 
@@ -288,8 +321,9 @@ def main() -> None:
     # by_id is keyed by run_id and already contains the new runs, so sorting
     # its values is the full set; extending with new_runs again would double-
     # write every new run.
-    existing = sorted(by_id.values(), key=lambda r: (r.get("created_at") or "", r["repo"]))
-    save_log(existing)
+    all_existing = sorted(by_id.values(), key=lambda r: (r.get("created_at") or "", r["repo"]))
+    save_log(all_existing)
+    existing = [r for r in all_existing if r.get("repo") in active_repos]
     update_today(existing, repos)
 
     # ── today summary for ntfy ────────────────────────────────────────────
