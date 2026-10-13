@@ -244,8 +244,7 @@ def discover_repos() -> list:
     data = gh_api("user/repos?per_page=100&affiliation=owner&sort=updated&direction=desc")
     if not data:
         return []
-    # repos.json is public, so never publish private repository names via discovery.
-    all_owned = [r["full_name"] for r in data if r.get("visibility") == "public"]
+    all_owned = [r["full_name"] for r in data]
     added = [r for r in all_owned if r not in current and r != self_repo]
     if added:
         updated = sorted(current | set(added))
