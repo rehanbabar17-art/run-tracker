@@ -22,8 +22,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 REPOS_FILE = ROOT / "repos.json"
-LOG_FILE = ROOT / "run-log.json"
-TODAY_FILE = ROOT / "TODAY.md"
+# Detailed run data is intentionally kept out of the public repository.
+PRIVATE_DATA_DIR = Path(os.environ.get("RUN_TRACKER_PRIVATE_DIR", ROOT / "private-data"))
+LOG_FILE = PRIVATE_DATA_DIR / "run-log.json"
+TODAY_FILE = PRIVATE_DATA_DIR / "TODAY.md"
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")
 PER_PAGE = 100
 NTFY_TIMEOUT = 10
@@ -116,12 +118,14 @@ def gh_api(path: str):
 # ── file helpers ──────────────────────────────────────────────────────────────
 
 def load_log() -> list:
+    PRIVATE_DATA_DIR.mkdir(parents=True, exist_ok=True)
     if LOG_FILE.exists():
         return json.loads(LOG_FILE.read_text())
     return []
 
 
 def save_log(runs: list) -> None:
+    PRIVATE_DATA_DIR.mkdir(parents=True, exist_ok=True)
     LOG_FILE.write_text(json.dumps(runs, indent=2) + "\n")
 
 
@@ -227,6 +231,7 @@ def update_today(runs: list, tracked_repos: list) -> None:
     else:
         lines.append("- No runs recorded yet today.")
 
+    PRIVATE_DATA_DIR.mkdir(parents=True, exist_ok=True)
     TODAY_FILE.write_text("\n".join(lines) + "\n")
 
 
@@ -239,7 +244,8 @@ def discover_repos() -> list:
     data = gh_api("user/repos?per_page=100&affiliation=owner&sort=updated&direction=desc")
     if not data:
         return []
-    all_owned = [r["full_name"] for r in data]
+    # repos.json is public, so never publish private repository names via discovery.
+    all_owned = [r["full_name"] for r in data if r.get("visibility") == "public"]
     added = [r for r in all_owned if r not in current and r != self_repo]
     if added:
         updated = sorted(current | set(added))

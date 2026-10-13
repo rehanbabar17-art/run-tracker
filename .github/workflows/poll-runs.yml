@@ -45,7 +45,9 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add repos.json run-log.json TODAY.md
+          # Only the public list of confirmed public repos is committed.
+          # Detailed run history and reports stay in ignored local storage.
+          git add repos.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
