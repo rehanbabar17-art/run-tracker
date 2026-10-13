@@ -22,12 +22,9 @@ After every poll, a notification is posted to your configured ntfy topic, showin
 
 The topic is set via the **`NTFY_TOPIC`** repository secret (not stored in code).
 
-## Auto-discovery on the last run of the day
+## Repository-list reconciliation
 
-On each poll, `poll_runs.py` removes tracked repositories when GitHub explicitly returns `404 Not Found`; API/authentication errors do not remove entries. It also lists repos visible to the configured GitHub token and appends newly discovered owned repos to `repos.json` on the last run of the day.
-
-- **cron-job.org**: set `"last_run_of_day": true` in the dispatch body on your final job of the day.
-- **Fallback**: if the run happens at PKT hour ≥ 23 (configurable via `LAST_RUN_HOUR`), discovery runs automatically.
+On each poll, `poll_runs.py` reconciles `repos.json` against the complete, paginated list of owned repos visible to the configured GitHub token. Names absent from that list are removed and newly listed repos are added. If GitHub cannot return the inventory, the existing list is left unchanged.
 
 ## Setup
 

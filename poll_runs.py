@@ -139,37 +139,6 @@ def save_repos(repos: list) -> None:
     REPOS_FILE.write_text(json.dumps(sorted(repos), indent=2) + "\n")
 
 
-def repo_is_missing(repo: str) -> bool:
-    """Return True only when GitHub explicitly reports this repo as not found."""
-    result = subprocess.run(
-        ["gh", "api", f"repos/{repo}"],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    if result.returncode == 0:
-        return False
-    error = result.stderr.strip()
-    if "HTTP 404" in error or "404 Not Found" in error:
-        print(f"  removing missing repository {repo}")
-        return True
-    # Keep the entry on auth/rate-limit/network errors; they do not prove deletion.
-    print(f"  could not verify repository {repo}: {error}", file=sys.stderr)
-    return False
-
-
-def remove_missing_repos(repos: list) -> tuple[list, list]:
-    """Remove repositories GitHub reports as 404; return active and removed lists."""
-    active = []
-    removed = []
-    for repo in repos:
-        (removed if repo_is_missing(repo) else active).append(repo)
-    if removed:
-        save_repos(active)
-        print(f"Removed {len(removed)} repository/repositories no longer found.")
-    return active, removed
-
-
 def is_failed(run: dict) -> bool:
     """Return True if a run concluded with failure/timed_out/cancelled."""
     return (run.get("conclusion") or run.get("status") or "") in FAILED_CONCLUSIONS
@@ -268,32 +237,50 @@ def update_today(runs: list, tracked_repos: list) -> None:
 
 # ── repo discovery ───────────────────────────────────────────────────────────
 
-def discover_repos() -> list:
-    """List all owned repos, return any newly added ones (excluding tracker itself)."""
+def discover_repos() -> tuple[list, list]:
+    """Reconcile repos.json with all repos currently owned and visible to the token."""
     current = set(load_repos())
     self_repo = tracker_repo()
-    data = gh_api("user/repos?per_page=100&affiliation=owner&sort=updated&direction=desc")
-    if not data:
-        return []
-    all_owned = [r["full_name"] for r in data]
-    added = [r for r in all_owned if r not in current and r != self_repo]
-    if added:
-        updated = sorted(current | set(added))
-        save_repos(updated)
-    return added
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    env = dict(os.environ)
+    if token:
+        env["GH_TOKEN"] = token
+    result = subprocess.run(
+        [
+            "gh", "api", "--paginate", "--jq", ".[].full_name",
+            "user/repos?per_page=100&affiliation=owner&sort=updated&direction=desc",
+        ],
+        capture_output=True,
+        text=True,
+        env=env,
+        check=False,
+    )
+    if result.returncode != 0:
+        print(f"  error listing owned repos: {result.stderr.strip()}", file=sys.stderr)
+        return [], []
+    all_owned = {name.strip() for name in result.stdout.splitlines() if name.strip()}
+    if self_repo:
+        all_owned.discard(self_repo)
+    added = sorted(all_owned - current)
+    removed = sorted(current - all_owned)
+    if added or removed:
+        save_repos(sorted(all_owned))
+    return added, removed
 
 
 # ── main ─────────────────────────────────────────────────────────────────────
 
 def main() -> None:
     # Always discover new repos before polling so they are included immediately.
-    added = discover_repos()
+    added, removed = discover_repos()
     if added:
         print(f"Discovered {len(added)} new repo(s): {', '.join(added)}")
-    else:
+    if removed:
+        print(f"Removed {len(removed)} repo(s) absent from GitHub: {', '.join(removed)}")
+    if not added and not removed:
         print("No new repos found this poll.")
 
-    repos, _ = remove_missing_repos(load_repos())
+    repos = load_repos()
     all_existing = load_log()
     # Preserve historical data privately, but exclude removed repos from outputs.
     active_repos = set(repos)
